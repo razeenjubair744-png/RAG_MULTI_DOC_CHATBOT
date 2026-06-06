@@ -1,0 +1,22 @@
+[
+  {
+    "question": "What is the main topic of the document?",
+    "ground_truth": "Replace this with the expected answer based on your actual PDFs."
+  },
+  {
+    "question": "What are the key findings mentioned?",
+    "ground_truth": "Replace this with the expected answer."
+  },
+  {
+    "question": "Who are the authors of the document?",
+    "ground_truth": "Replace this with the expected answer."
+  },
+  {
+    "question": "What methodology was used in the study?",
+    "ground_truth": "Replace this with the expected answer."
+  },
+  {
+    "question": "What conclusions were drawn?",
+    "ground_truth": "Replace this with the expected answer."
+  }
+]
