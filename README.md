@@ -154,5 +154,42 @@ rag-chatbot/
 ├── ui/
 │   └── streamlit_app.py     # Chat interface
 ├── ingest.py                # CLI ingestion script
+├── start.sh                 # Deployment script (runs both apps)
+├── Dockerfile               # Production Docker configuration
 └── requirements.txt
 ```
+
+---
+
+## Pushing to GitHub
+
+If you're seeing a "divergent branches" or "rejected" error when pushing to your GitHub repo, it's because GitHub initialized the repository with some default files (like a README or license) that aren't on your local machine yet.
+
+To sync and push your code properly, run the following commands in your terminal:
+
+```bash
+# 1. Add your files and commit your changes
+git add .
+git commit -m "Initial RAG chatbot commit"
+
+# 2. Rebase and pull from GitHub (this merges their empty init into your code)
+git pull origin main --rebase
+
+# 3. Push your code successfully!
+git push -u origin main
+```
+
+*(Note: If step 2 fails and you don't care about keeping GitHub's initial commit history, you can simply force-push with `git push -u origin main --force`)*
+
+---
+
+## Deploying to Render
+
+This project includes a `Dockerfile` and `start.sh` script pre-configured to run **both** the FastAPI backend and Streamlit frontend inside a single Render Web Service to save costs.
+
+1. Go to [Render.com](https://render.com) and create a new **Web Service**.
+2. Connect your GitHub repository.
+3. Select **Docker** as your runtime/environment.
+4. Set the following Environment Variables in the Render dashboard:
+   - `OPENAI_API_KEY`: Your OpenAI API Key
+5. Deploy! Streamlit will automatically bind to the `$PORT` assigned by Render, while the FastAPI backend runs internally on port 8000.
