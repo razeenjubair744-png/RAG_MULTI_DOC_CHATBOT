@@ -185,11 +185,12 @@ git push -u origin main
 
 ## Deploying to Render
 
-This project includes a `Dockerfile` and `start.sh` script pre-configured to run **both** the FastAPI backend and Streamlit frontend inside a single Render Web Service to save costs.
+This project includes a `Dockerfile` that automatically builds the React frontend and runs the FastAPI backend inside a single Render Web Service to save costs.
 
-1. Go to [Render.com](https://render.com) and create a new **Web Service**.
+**Deployment Steps:**
+1. Create a new **Web Service** on Render.
 2. Connect your GitHub repository.
-3. Select **Docker** as your runtime/environment.
-4. Set the following Environment Variables in the Render dashboard:
-   - `OPENAI_API_KEY`: Your OpenAI API Key
-5. Deploy! Streamlit will automatically bind to the `$PORT` assigned by Render, while the FastAPI backend runs internally on port 8000.
+3. Render will automatically detect the `Dockerfile` and build both the frontend and backend.
+4. Set the `OPENAI_API_KEY` environment variable in the Render dashboard.
+
+*(Note: Render assigns a dynamic port during deployment, which the Dockerfile automatically binds to using `${PORT:-8000}`)*
